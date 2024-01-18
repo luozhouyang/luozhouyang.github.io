@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "luozhouyang-github-io"
+version = "0.1.0"
+description = ""
+authors = ["luozhouyang <zhouyang.luo@gmail.com>"]
+readme = "README.md"
+packages = [{include = "luozhouyang"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.5.4"
+mkdocs-minify-plugin = "^0.7.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

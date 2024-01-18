@@ -1,0 +1,27 @@
+site_name: 粥老师
+theme: 
+  name: material
+  icon:
+    previous: fontawesome/solid/angle-left
+    next: fontawesome/solid/angle-right
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - nagigation.top
+    - navigation.top
+    - navigation.tracking
+
+# Plugins
+plugins:
+  - blog:
+      blog_dir: blog
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - minify:
+      minify_html: true
+
+nav:
+  - Home: index.md
+  - Blog: blog/index.md
+
