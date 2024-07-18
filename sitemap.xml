@@ -10,4 +10,24 @@
          <lastmod>2024-07-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
+    <url>
+         <loc>https://luozhouyang.com/blog/2024/07/18/kong-gateway/</loc>
+         <lastmod>2024-07-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://luozhouyang.com/blog/archive/2024/</loc>
+         <lastmod>2024-07-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://luozhouyang.com/blog/category/kong/</loc>
+         <lastmod>2024-07-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://luozhouyang.com/blog/category/api-gateway/</loc>
+         <lastmod>2024-07-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
 </urlset>
