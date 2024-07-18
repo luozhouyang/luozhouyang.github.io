@@ -1,6 +1,36 @@
-site_name: 粥老师
-theme: 
+site_name: 粥老师的代码实验室
+site_url: https://luozhouyang.com
+site_author: luozhouyang
+site_description: 粥老师的代码实验室
+theme:
   name: material
+  logo: assets/avatar.png
+  favicon: assets/avatar.png
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: teal
+      accent: indigo
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: teal
+      accent: indigo
+
   icon:
     previous: fontawesome/solid/angle-left
     next: fontawesome/solid/angle-right
@@ -15,7 +45,20 @@ theme:
 # Plugins
 plugins:
   - blog:
+      enabled: true
       blog_dir: blog
+      blog_toc: true
+      archive: true
+      archive_name: Archive
+      archive_date_format: yyyy
+      archive_url_date_format: yyyy
+      archive_url_format: "archive/{date}"
+      # archive_pagination: false
+      archive_toc: true
+      categories: true
+      categories_name: Categories
+      categories_url_format: "category/{slug}"
+      # categories_pagination: false
   - search:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
@@ -24,4 +67,3 @@ plugins:
 nav:
   - Home: index.md
   - Blog: blog/index.md
-

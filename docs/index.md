@@ -1,5 +1,5 @@
 ---
-title: 粥老师的代码实验室
+title: Home
 social:
   cards_layout_options:
     title: Documentation that simply works
