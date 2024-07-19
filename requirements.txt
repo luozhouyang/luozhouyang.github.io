@@ -1,6 +1,3 @@
---trusted-host mirrors.cloud.aliyuncs.com
---index-url https://mirrors.cloud.aliyuncs.com/pypi/simple
-
 babel==2.15.0 ; python_version >= "3.11" and python_version < "4.0"
 certifi==2024.7.4 ; python_version >= "3.11" and python_version < "4.0"
 charset-normalizer==3.3.2 ; python_version >= "3.11" and python_version < "4.0"
