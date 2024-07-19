@@ -9,6 +9,7 @@ packages = [{include = "luozhouyang"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 mkdocs-material = "^9.5.29"
+mkdocs-minify-plugin = "^0.8.0"
 
 
 [[tool.poetry.source]]
