@@ -48,6 +48,7 @@ plugins:
       enabled: true
       blog_dir: blog
       blog_toc: true
+      authors_profiles: true
       archive: true
       archive_name: Archive
       archive_date_format: yyyy
@@ -63,6 +64,8 @@ plugins:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
+      minify_js: true
+      minify_css: true
 
 nav:
   - Home: index.md

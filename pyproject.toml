@@ -11,6 +11,15 @@ python = "^3.11"
 mkdocs-material = "^9.5.29"
 
 
+[[tool.poetry.source]]
+name = "aliyun"
+url = "http://mirrors.cloud.aliyuncs.com/pypi/simple/"
+priority = "primary"
+
+
+[tool.poetry.group.dev.dependencies]
+poetry-plugin-export = "^1.8.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
