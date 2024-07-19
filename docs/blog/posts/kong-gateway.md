@@ -5,7 +5,8 @@ categories:
   - API Gateway
 
 title: "Kong Gateway"
-author: "luozhouyang"
+authors: 
+  - "luozhouyang"
 ---
 
 # Kong Gateway
