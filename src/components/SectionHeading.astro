@@ -1,0 +1,23 @@
+---
+interface Props {
+  index: string;
+  eyebrow: string;
+  title: string;
+  description?: string;
+  id?: string;
+}
+
+const { index, eyebrow, title, description, id } = Astro.props;
+---
+
+<div id={id} class="scroll-mt-28">
+  <div class="flex items-center gap-4">
+    <span class="font-mono text-[0.84rem] tracking-[0.18em] text-hud">{index}</span>
+    <span class="h-px flex-1 bg-gradient-to-r from-hud/40 to-transparent"></span>
+    <span class="font-mono text-[0.78rem] tracking-[0.2em] text-ink-faint">{eyebrow}</span>
+  </div>
+  <div class="mt-7 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+    <h2 class="max-w-2xl text-balance text-3xl font-medium tracking-[-0.04em] text-ink md:text-5xl">{title}</h2>
+    {description && <p class="max-w-sm text-sm leading-7 text-ink-dim md:text-right">{description}</p>}
+  </div>
+</div>

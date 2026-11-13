@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  lang?: 'zh-CN' | 'en';
+  skipLabel?: string;
+  alternates?: { hreflang: string; href: string }[];
+}
+
+const {
+  title = 'LOST IN ORBIT · 个人主页',
+  description = '一个关于代码、工具与失重场景的个人主页。Rust、TypeScript 与 AI 工具链。',
+  image = '/og.png',
+  imageAlt = 'LOST IN ORBIT — 个人主页',
+  lang = 'zh-CN',
+  skipLabel = '跳到主要内容',
+  alternates = [],
+} = Astro.props;
+
+const canonical = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : Astro.url.pathname;
+const ogImage = Astro.site ? new URL(image, Astro.site).toString() : image;
+const absoluteAlternates = alternates.map((alternate) => ({
+  ...alternate,
+  href: Astro.site ? new URL(alternate.href, Astro.site).toString() : alternate.href,
+}));
+const ogLocale = lang === 'en' ? 'en_US' : 'zh_CN';
+---
+
+<!doctype html>
+<html lang={lang} data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#03050c" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="dark light" />
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        let theme;
+        try {
+          theme = localStorage.getItem('orbit-theme');
+        } catch {}
+        if (theme !== 'light' && theme !== 'dark') theme = 'dark';
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+      })();
+    </script>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="LOST IN ORBIT" href="/rss.xml" />
+    {absoluteAlternates.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+    ))}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:site_name" content="LOST IN ORBIT" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'LOST IN ORBIT',
+      url: 'https://luozhouyang.github.io',
+      description,
+      inLanguage: lang,
+    })} />
+  </head>
+  <body id="top" class="bg-space-950 text-ink">
+    <a
+      href="#main"
+      class="skip-link fixed top-3 left-3 z-[100] -translate-y-20 rounded-full bg-hud px-4 py-2 font-mono text-xs font-semibold text-space-950 transition-transform focus:translate-y-0"
+    >
+      {skipLabel}
+    </a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,437 @@
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource-variable/jetbrains-mono';
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Space Grotesk Variable', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'SFMono-Regular', ui-monospace,
+    monospace;
+
+  --color-space-950: #03050c;
+  --color-space-900: #05070f;
+  --color-space-800: #0a1020;
+  --color-space-700: #0e1630;
+  --color-space-600: #162040;
+  --color-ink: #e9edff;
+  --color-ink-dim: #9aa5c8;
+  --color-ink-faint: #7b87a8;
+  --color-hud: #7de3e0;
+  --color-hud-dim: #3e8d91;
+  --color-ember: #ffb26b;
+  --color-ember-bright: #ffd09b;
+
+  --shadow-glow-hud: 0 0 40px rgb(125 227 224 / 0.18);
+  --shadow-glow-ember: 0 0 50px rgb(255 178 107 / 0.16);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --nav-height: 72px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-space-950);
+  }
+
+  body {
+    min-width: 320px;
+    background: var(--color-space-950);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: rgb(125 227 224 / 0.28);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-hud);
+    outline-offset: 4px;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .shell {
+    width: min(100% - 2rem, 1180px);
+    margin-inline: auto;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.84rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-hud);
+  }
+
+  .glass-panel {
+    border: 1px solid rgb(233 237 255 / 0.1);
+    background:
+      linear-gradient(135deg, rgb(22 32 64 / 0.72), rgb(5 7 15 / 0.82)),
+      rgb(5 7 15 / 0.6);
+    backdrop-filter: blur(18px);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.06),
+      0 24px 80px rgb(0 0 0 / 0.38);
+  }
+
+  .hud-corners {
+    position: relative;
+  }
+
+  .hud-corners::before,
+  .hud-corners::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: rgb(125 227 224 / 0.55);
+    pointer-events: none;
+  }
+
+  .hud-corners::before {
+    top: -1px;
+    left: -1px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+
+  .hud-corners::after {
+    right: -1px;
+    bottom: -1px;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .pixel-avatar {
+    image-rendering: pixelated;
+  }
+}
+
+@layer components {
+  .prose-cosmic {
+    color: rgb(154 165 200 / 0.9);
+    font-size: 1.0rem;
+    line-height: 1.95;
+  }
+
+  .prose-cosmic > * + * {
+    margin-top: 1.25em;
+  }
+
+  .prose-cosmic h2 {
+    margin-top: 2.4em;
+    color: #f3f6ff;
+    font-size: 1.45rem;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.35;
+  }
+
+  .prose-cosmic h3 {
+    margin-top: 2em;
+    color: #f3f6ff;
+    font-size: 1.12rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+  }
+
+  .prose-cosmic strong {
+    color: #e9edff;
+    font-weight: 500;
+  }
+
+  .prose-cosmic a {
+    color: #7de3e0;
+    text-decoration: underline;
+    text-decoration-color: rgb(125 227 224 / 0.35);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  .prose-cosmic a:hover {
+    text-decoration-color: #7de3e0;
+  }
+
+  .prose-cosmic ul,
+  .prose-cosmic ol {
+    padding-left: 1.35rem;
+  }
+
+  .prose-cosmic ul {
+    list-style: disc;
+  }
+
+  .prose-cosmic ol {
+    list-style: decimal;
+  }
+
+  .prose-cosmic li {
+    padding-left: 0.35rem;
+    margin-top: 0.45em;
+  }
+
+  .prose-cosmic li::marker {
+    color: rgb(125 227 224 / 0.55);
+  }
+
+  .prose-cosmic code {
+    border: 1px solid rgb(233 237 255 / 0.08);
+    border-radius: 0.35rem;
+    background: rgb(233 237 255 / 0.05);
+    padding: 0.12em 0.35em;
+    color: #b8fffb;
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+  }
+
+  .prose-cosmic pre {
+    overflow-x: auto;
+    border: 1px solid rgb(233 237 255 / 0.08);
+    border-radius: 0.85rem;
+    background: rgb(3 5 12 / 0.72);
+    padding: 1rem 1.1rem;
+    line-height: 1.7;
+  }
+
+  .prose-cosmic pre code {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: rgb(233 237 255 / 0.84);
+    font-size: 0.9rem;
+  }
+
+  .prose-cosmic blockquote {
+    border-left: 1px solid rgb(125 227 224 / 0.4);
+    padding-left: 1rem;
+    color: rgb(154 165 200 / 0.72);
+    font-style: italic;
+  }
+
+  .prose-cosmic hr {
+    margin-block: 2.2rem;
+    border-color: rgb(233 237 255 / 0.08);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Daylight theme
+   Semantic tokens flip first; component-level overrides live in scene.css
+   (home) and the blog-specific block below.
+   -------------------------------------------------------------------------- */
+
+html[data-theme='light'] {
+  color-scheme: light;
+
+  --color-space-950: #f4f0e7;
+  --color-space-900: #eef0ee;
+  --color-space-800: #e6ecec;
+  --color-space-700: #dce6e6;
+  --color-space-600: #cbdada;
+  --color-ink: #101625;
+  --color-ink-dim: #3d4a5f;
+  --color-ink-faint: #5d6a80;
+  --color-hud: #0b5f59;
+  --color-hud-dim: #094c47;
+  --color-ember: #b45309;
+  --color-ember-bright: #92400e;
+}
+
+html[data-theme='light'] ::selection {
+  background: rgb(11 95 89 / 0.18);
+  color: #101625;
+}
+
+html[data-theme='light'] .glass-panel {
+  border-color: rgb(16 22 37 / 0.12);
+  background:
+    linear-gradient(135deg, rgb(255 253 248 / 0.88), rgb(238 240 238 / 0.82)),
+    rgb(244 240 231 / 0.7);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.8),
+    0 24px 70px rgb(23 32 48 / 0.12);
+}
+
+html[data-theme='light'] .hud-corners::before,
+html[data-theme='light'] .hud-corners::after {
+  border-color: rgb(11 95 89 / 0.55);
+}
+
+html[data-theme='light'] .prose-cosmic {
+  color: rgb(45 58 78 / 0.92);
+}
+
+html[data-theme='light'] .prose-cosmic h2,
+html[data-theme='light'] .prose-cosmic h3,
+html[data-theme='light'] .prose-cosmic strong {
+  color: #101625;
+}
+
+html[data-theme='light'] .prose-cosmic a {
+  color: #0b5f59;
+  text-decoration-color: rgb(11 95 89 / 0.32);
+}
+
+html[data-theme='light'] .prose-cosmic code {
+  border-color: rgb(16 22 37 / 0.1);
+  background: rgb(16 22 37 / 0.05);
+  color: #0b5f59;
+}
+
+html[data-theme='light'] .prose-cosmic pre {
+  border-color: rgb(16 22 37 / 0.12) !important;
+  background: rgb(238 240 238 / 0.9) !important;
+}
+
+html[data-theme='light'] .prose-cosmic pre code {
+  color: #1e293b;
+}
+
+html[data-theme='light'] .prose-cosmic blockquote {
+  border-left-color: rgb(11 95 89 / 0.4);
+  color: #3d4a5f;
+}
+
+/* Shared navigation / footer / blog surfaces */
+html[data-theme='light'] .nav-shell {
+  border-bottom-color: rgb(16 22 37 / 0.1);
+  background: rgb(244 240 231 / 0.82);
+}
+
+html[data-theme='light'] .nav-link,
+html[data-theme='light'] .nav-lang {
+  color: #3d4a5f;
+}
+
+html[data-theme='light'] .nav-theme {
+  border-color: rgb(16 22 37 / 0.16);
+  color: #3d4a5f;
+}
+
+html[data-theme='light'] .nav-github {
+  border-color: rgb(16 22 37 / 0.16);
+  color: #101625;
+}
+
+html[data-theme='light'] .nav-mobile-panel {
+  border-color: rgb(16 22 37 / 0.12);
+  background: rgb(250 248 242 / 0.98);
+  box-shadow: 0 24px 60px rgb(23 32 48 / 0.18);
+}
+
+html[data-theme='light'] .nav-mobile-panel a {
+  color: #3d4a5f;
+}
+
+html[data-theme='light'] .nav-mobile-panel a:hover {
+  background: rgb(11 95 89 / 0.06);
+  color: #0b5f59;
+}
+
+html[data-theme='light'] .site-footer,
+html[data-theme='light'] footer {
+  background: #f4f0e7;
+  border-top-color: rgb(16 22 37 / 0.1);
+}
+
+html[data-theme='light'] footer .border-white\/12 {
+  border-color: rgb(16 22 37 / 0.18);
+}
+
+html[data-theme='light'] .blog-card,
+html[data-theme='light'] .blog-index-card {
+  border-color: rgb(16 22 37 / 0.12);
+  background: rgb(255 253 248 / 0.6);
+}
+
+html[data-theme='light'] .blog-card:hover,
+html[data-theme='light'] .blog-index-card:hover {
+  border-color: rgb(11 95 89 / 0.35);
+}
+
+html[data-theme='light'] .post-header,
+html[data-theme='light'] .blog-header {
+  border-color: rgb(16 22 37 / 0.1);
+}
+
+html[data-theme='light'] .skip-link {
+  background: #0b5f59;
+  color: #fffdf8;
+}
+
+/* Theme toggle icon swap */
+html[data-theme='dark'] .theme-icon-moon {
+  display: none;
+}
+
+html[data-theme='light'] .theme-icon-sun {
+  display: none;
+}
+
+html[data-theme='dark'] .theme-icon-sun,
+html[data-theme='light'] .theme-icon-moon {
+  display: block;
+}
+
+/* Light-mode tiny telemetry text: raise the effective teal contrast */
+html[data-theme='light'] .text-hud\/40,
+html[data-theme='light'] .text-hud\/50,
+html[data-theme='light'] .text-hud\/55,
+html[data-theme='light'] .text-hud\/60,
+html[data-theme='light'] .text-hud\/65,
+html[data-theme='light'] .text-hud\/70,
+html[data-theme='light'] .text-hud\/75,
+html[data-theme='light'] .text-hud\/80,
+html[data-theme='light'] .text-hud\/85,
+html[data-theme='light'] .text-hud\/90 {
+  color: #0b5f59;
+}
+
+html[data-theme='light'] .text-white\/60 {
+  color: #3d4a5f;
+}
+
+/* Readability: lift the long tail of 12–14px utility copy without changing
+   the display typography or the HUD geometry. */
+.text-xs {
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.text-sm {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}

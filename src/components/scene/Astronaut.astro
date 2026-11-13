@@ -1,0 +1,242 @@
+---
+import avatarUrl from '../../assets/avatar-visor.jpg?url';
+
+interface Props {
+  label?: string;
+}
+
+const { label = '戴着头盔的宇航员，面罩里是一张 GitHub 头像' } = Astro.props;
+---
+
+<div class="astronaut" data-astronaut>
+  <div class="astronaut-glow" aria-hidden="true"></div>
+  <svg
+    viewBox="0 0 360 460"
+    class="astronaut-svg"
+    role="img"
+    aria-label={label}
+  >
+    <defs>
+      <linearGradient id="suit" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#f2f5ff" />
+        <stop offset="0.38" stop-color="#cbd3e6" />
+        <stop offset="0.72" stop-color="#9ca8c2" />
+        <stop offset="1" stop-color="#707b98" />
+      </linearGradient>
+      <linearGradient id="suitShadow" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#7f8ba6" stop-opacity="0" />
+        <stop offset="1" stop-color="#4a5572" stop-opacity=".8" />
+      </linearGradient>
+      <linearGradient id="armSuit" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#e8edf8" />
+        <stop offset="1" stop-color="#98a4be" />
+      </linearGradient>
+      <linearGradient id="backpack" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#6f7b96" />
+        <stop offset=".55" stop-color="#3c4761" />
+        <stop offset="1" stop-color="#222b42" />
+      </linearGradient>
+      <radialGradient id="helmetLight" cx=".32" cy=".2" r=".8">
+        <stop offset="0" stop-color="#ffffff" stop-opacity=".95" />
+        <stop offset=".5" stop-color="#dfe5f2" stop-opacity=".5" />
+        <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+      </radialGradient>
+      <radialGradient id="visor" cx=".5" cy=".42" r=".72">
+        <stop offset="0" stop-color="#10243d" />
+        <stop offset=".66" stop-color="#07111f" />
+        <stop offset="1" stop-color="#02040a" />
+      </radialGradient>
+      <linearGradient id="visorGlass" x1="0" y1="0" x2=".8" y2="1">
+        <stop offset="0" stop-color="#9ff6f0" stop-opacity=".22" />
+        <stop offset=".35" stop-color="#7de3e0" stop-opacity=".03" />
+        <stop offset="1" stop-color="#0a1530" stop-opacity=".2" />
+      </linearGradient>
+      <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffffff" stop-opacity=".95" />
+        <stop offset=".45" stop-color="#aab6cf" stop-opacity=".35" />
+        <stop offset="1" stop-color="#ffffff" stop-opacity=".08" />
+      </linearGradient>
+      <linearGradient id="chestPanel" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#1b2742" />
+        <stop offset="1" stop-color="#070d19" />
+      </linearGradient>
+      <clipPath id="visorClip">
+        <ellipse cx="180" cy="120" rx="74" ry="61" />
+      </clipPath>
+      <clipPath id="pilotScreenClip">
+        <rect x="109" y="63" width="142" height="116" rx="15" />
+      </clipPath>
+      <linearGradient id="screenFade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#030711" stop-opacity="0" />
+        <stop offset="1" stop-color="#030711" stop-opacity=".86" />
+      </linearGradient>
+      <radialGradient id="screenVignette" cx=".5" cy=".42" r=".62">
+        <stop offset=".28" stop-color="#030711" stop-opacity="0" />
+        <stop offset=".72" stop-color="#030711" stop-opacity=".35" />
+        <stop offset="1" stop-color="#030711" stop-opacity=".88" />
+      </radialGradient>
+      <clipPath id="helmetClip">
+        <ellipse cx="180" cy="116" rx="94" ry="91" />
+      </clipPath>
+      <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+        <path d="M0 0h4" stroke="#9ff6f0" stroke-width=".55" opacity=".28" />
+      </pattern>
+      <filter id="beaconBlur" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="4" />
+      </filter>
+    </defs>
+
+    <g class="astro-float">
+      <!-- backpack + tanks -->
+      <g opacity=".98">
+        <rect x="66" y="174" width="228" height="158" rx="42" fill="url(#backpack)" stroke="#111a2d" stroke-width="2" />
+        <ellipse cx="96" cy="208" rx="18" ry="30" fill="#202b43" stroke="#7e8ba8" stroke-width="1.2" opacity=".8" />
+        <ellipse cx="264" cy="208" rx="18" ry="30" fill="#202b43" stroke="#7e8ba8" stroke-width="1.2" opacity=".8" />
+        <path d="M76 288h208" stroke="#94a1bb" stroke-width="1" opacity=".25" />
+        <path d="M78 178c32-22 172-22 204 0" stroke="#cfd8ea" stroke-width="1.4" opacity=".25" fill="none" />
+      </g>
+
+      <!-- arms behind torso -->
+      <g class="arm arm-left">
+        <path d="M124 211c-22 8-37 31-40 58-3 26-10 42-23 55" stroke="#8e9ab6" stroke-width="42" stroke-linecap="round" fill="none" />
+        <path d="M124 211c-22 8-37 31-40 58-3 26-10 42-23 55" stroke="url(#armSuit)" stroke-width="34" stroke-linecap="round" fill="none" />
+        <path d="M64 318c-10 5-15 12-16 21" stroke="#ffb26b" stroke-width="9" stroke-linecap="round" />
+        <circle cx="57" cy="348" r="21" fill="#b7c2d7" stroke="#6b7793" stroke-width="2" />
+        <circle cx="52" cy="343" r="10" fill="#eef2fb" opacity=".65" />
+        <path d="M69 331c5 5 8 11 9 18" stroke="#4b5672" stroke-width="2" stroke-linecap="round" opacity=".6" />
+      </g>
+
+      <!-- legs -->
+      <g class="leg leg-left">
+        <path d="M148 322c-8 28-18 49-21 76-2 18-5 33-11 46" stroke="#8995b1" stroke-width="48" stroke-linecap="round" fill="none" />
+        <path d="M148 322c-8 28-18 49-21 76-2 18-5 33-11 46" stroke="url(#suit)" stroke-width="41" stroke-linecap="round" fill="none" />
+        <path d="M112 410c-12 8-19 17-21 27" stroke="#ffb26b" stroke-width="10" stroke-linecap="round" />
+        <path d="M92 438c-9 2-15 8-16 16h55c0-9-5-15-15-18z" fill="#2c3852" stroke="#111a2d" stroke-width="2" />
+      </g>
+      <g class="leg leg-right">
+        <path d="M212 322c9 27 19 49 23 77 2 17 5 32 10 45" stroke="#77839f" stroke-width="48" stroke-linecap="round" fill="none" />
+        <path d="M212 322c9 27 19 49 23 77 2 17 5 32 10 45" stroke="url(#suit)" stroke-width="41" stroke-linecap="round" fill="none" />
+        <path d="M245 410c12 8 19 17 21 27" stroke="#ffb26b" stroke-width="10" stroke-linecap="round" />
+        <path d="M266 438c9 2 15 8 16 16h-55c0-9 5-15 15-18z" fill="#2c3852" stroke="#111a2d" stroke-width="2" />
+      </g>
+
+      <!-- torso -->
+      <g>
+        <path
+          d="M118 196c0-20 27-32 62-32s62 12 62 32l12 104c2 20-18 34-74 34s-76-14-74-34z"
+          fill="url(#suit)"
+          stroke="#59647f"
+          stroke-width="2"
+        />
+        <path
+          d="M118 196c0-20 27-32 62-32s62 12 62 32l12 104c2 20-18 34-74 34s-76-14-74-34z"
+          fill="url(#suitShadow)"
+          opacity=".7"
+        />
+        <path d="M124 224c16 16 96 16 112 0" stroke="#6b7794" stroke-width="2" opacity=".38" fill="none" />
+        <path d="M112 292c45 15 91 15 136 0" stroke="#6b7794" stroke-width="2" opacity=".25" fill="none" />
+        <path d="M139 169c8 20 9 45 6 68" stroke="#8995af" stroke-width="2" opacity=".4" fill="none" />
+        <path d="M221 169c-8 20-9 45-6 68" stroke="#8995af" stroke-width="2" opacity=".4" fill="none" />
+
+        <!-- chest control panel -->
+        <g>
+          <rect x="156" y="238" width="48" height="55" rx="9" fill="url(#chestPanel)" stroke="#7986a1" stroke-width="1.4" />
+          <rect x="164" y="247" width="32" height="13" rx="3" fill="#07111f" stroke="#3e8d91" stroke-width="1" />
+          <path d="M167 253h26" stroke="#7de3e0" stroke-width="2" stroke-linecap="round" opacity=".8" />
+          <circle cx="166" cy="271" r="3" fill="#7de3e0" />
+          <circle cx="178" cy="271" r="3" fill="#ffb26b" />
+          <circle cx="190" cy="271" r="3" fill="#4c5a76" />
+          <path d="M164 282h31" stroke="#56627d" stroke-width="2" stroke-linecap="round" opacity=".7" />
+        </g>
+
+        <!-- shoulder patch -->
+        <g transform="translate(113 188)">
+          <path d="M0 0h31l-5 11H0z" fill="#ffb26b" opacity=".9" />
+          <path d="M0 14h24l-4 10H0z" fill="#7de3e0" opacity=".55" />
+        </g>
+
+        <!-- waist ring -->
+        <path d="M113 305c37 14 97 14 134 0" stroke="#4e5a75" stroke-width="7" fill="none" opacity=".55" />
+        <path d="M116 300c36 12 92 12 128 0" stroke="#cfd8ea" stroke-width="1.4" fill="none" opacity=".4" />
+
+        <!-- tether point -->
+        <g transform="translate(180 306)">
+          <circle r="11" fill="#1c2740" stroke="#aeb9cf" stroke-width="2" />
+          <circle r="5" fill="#7de3e0" opacity=".75" />
+          <circle r="12" fill="none" stroke="#7de3e0" stroke-width="1" opacity=".25" />
+        </g>
+      </g>
+
+      <!-- right arm in front -->
+      <g class="arm arm-right">
+        <path d="M236 211c22 8 38 30 43 56 5 25 13 41 25 54" stroke="#8e9ab6" stroke-width="42" stroke-linecap="round" fill="none" />
+        <path d="M236 211c22 8 38 30 43 56 5 25 13 41 25 54" stroke="url(#armSuit)" stroke-width="34" stroke-linecap="round" fill="none" />
+        <path d="M299 314c10 6 15 14 15 23" stroke="#ffb26b" stroke-width="9" stroke-linecap="round" />
+        <circle cx="305" cy="347" r="21" fill="#b7c2d7" stroke="#6b7793" stroke-width="2" />
+        <circle cx="310" cy="342" r="10" fill="#eef2fb" opacity=".65" />
+        <path d="M293 330c-5 5-8 11-9 18" stroke="#4b5672" stroke-width="2" stroke-linecap="round" opacity=".6" />
+      </g>
+
+      <!-- helmet -->
+      <g>
+        <ellipse cx="180" cy="116" rx="94" ry="91" fill="#b9c3d7" stroke="#4b5672" stroke-width="2" />
+        <ellipse cx="180" cy="112" rx="88" ry="85" fill="#dce3f1" />
+        <ellipse cx="180" cy="112" rx="88" ry="85" fill="url(#helmetLight)" opacity=".9" />
+        <path d="M98 150c18 30 45 47 82 47s64-17 82-47" stroke="#8d99b3" stroke-width="2" fill="none" opacity=".5" />
+
+        <!-- visor -->
+        <ellipse cx="180" cy="120" rx="77" ry="64" fill="url(#visor)" />
+        <g clip-path="url(#visorClip)">
+          <!-- Pilot feed: the current GitHub avatar sits inside a small holographic
+               screen, cropped to the portrait so it reads at helmet scale. -->
+          <rect x="109" y="63" width="142" height="116" rx="15" fill="#050b16" stroke="#7de3e0" stroke-width="1" opacity=".95" />
+          <g clip-path="url(#pilotScreenClip)">
+            <image
+              href={avatarUrl}
+              x="109"
+              y="58"
+              width="142"
+              height="142"
+              preserveAspectRatio="xMidYMid slice"
+              class="avatar-in-visor"
+            />
+            <rect x="109" y="58" width="142" height="142" fill="#071426" opacity=".15" />
+            <rect x="109" y="58" width="142" height="142" fill="url(#screenVignette)" />
+            <rect x="109" y="58" width="142" height="142" fill="url(#scanlines)" opacity=".42" />
+            <rect x="109" y="145" width="142" height="34" fill="url(#screenFade)" />
+            <path d="M109 79V70c0-5 4-9 9-9h10" stroke="#9ff6f0" stroke-width="1.4" fill="none" opacity=".75" />
+            <path d="M251 79V70c0-5-4-9-9-9h-10" stroke="#9ff6f0" stroke-width="1.4" fill="none" opacity=".75" />
+            <path d="M109 163v9c0 5 4 9 9 9h10" stroke="#9ff6f0" stroke-width="1.4" fill="none" opacity=".55" />
+            <path d="M251 163v9c0 5-4 9-9 9h-10" stroke="#9ff6f0" stroke-width="1.4" fill="none" opacity=".55" />
+          </g>
+          <text x="126" y="160" fill="#9ff6f0" font-family="monospace" font-size="6.4" letter-spacing="1.1" opacity=".9">PILOT // ORBIT-01</text>
+          <circle cx="235" cy="157" r="1.7" fill="#7de3e0" />
+          <path d="M126 68c22-14 52-17 80-8" stroke="#c9fffb" stroke-width="6" stroke-linecap="round" opacity=".16" filter="url(#beaconBlur)" />
+          <path d="M116 98c10-24 30-40 52-48" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity=".18" />
+          <ellipse cx="180" cy="120" rx="77" ry="64" fill="none" stroke="#9ff6f0" stroke-width="2" opacity=".2" />
+        </g>
+        <ellipse cx="180" cy="120" rx="77" ry="64" fill="url(#visorGlass)" />
+        <path d="M116 92c10-24 30-41 54-50" stroke="#e8fffd" stroke-width="5" stroke-linecap="round" opacity=".18" />
+        <ellipse cx="180" cy="120" rx="79" ry="66" fill="none" stroke="#101a2b" stroke-width="5" opacity=".85" />
+        <ellipse cx="180" cy="116" rx="88" ry="85" fill="none" stroke="url(#rim)" stroke-width="3" />
+
+        <!-- helmet details -->
+        <path d="M93 105c-6 2-10 7-11 13" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".55" />
+        <circle cx="92" cy="146" r="7" fill="#2d3a55" stroke="#8d99b3" stroke-width="1.5" />
+        <circle cx="268" cy="146" r="7" fill="#2d3a55" stroke="#8d99b3" stroke-width="1.5" />
+        <path d="M262 166c-3 13-5 22-6 31" stroke="#7de3e0" stroke-width="3" stroke-linecap="round" opacity=".5" />
+        <path d="M98 166c3 13 5 22 6 31" stroke="#ffb26b" stroke-width="3" stroke-linecap="round" opacity=".45" />
+        <ellipse cx="180" cy="196" rx="58" ry="16" fill="#7e8ba5" stroke="#3f4a64" stroke-width="2" />
+        <path d="M132 194c22 8 74 8 96 0" stroke="#d9e1f1" stroke-width="3" fill="none" opacity=".35" />
+      </g>
+
+      <!-- hoses -->
+      <g>
+        <path d="M103 166c-6 22 4 50 32 68" stroke="#1f2a42" stroke-width="7" fill="none" stroke-linecap="round" />
+        <path d="M103 166c-6 22 4 50 32 68" stroke="#61708d" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55" />
+        <path d="M257 166c6 22-4 50-32 68" stroke="#1f2a42" stroke-width="7" fill="none" stroke-linecap="round" />
+        <path d="M257 166c6 22-4 50-32 68" stroke="#61708d" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55" />
+      </g>
+    </g>
+  </svg>
+</div>

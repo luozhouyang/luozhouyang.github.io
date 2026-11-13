@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://luozhouyang.github.io/sitemap-index.xml

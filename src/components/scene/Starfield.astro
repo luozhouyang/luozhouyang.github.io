@@ -1,0 +1,52 @@
+---
+// A single static SVG carries the dense star field. Only a handful of DOM stars
+// twinkle, which keeps the compositor light on mobile.
+let seed = 20261112;
+const random = () => {
+  seed = (seed * 1664525 + 1013904223) % 4294967296;
+  return seed / 4294967296;
+};
+
+const stars = Array.from({ length: 220 }, () => ({
+  x: +(random() * 1600).toFixed(1),
+  y: +(random() * 1000).toFixed(1),
+  r: +(0.65 + random() * 1.25).toFixed(2),
+  opacity: +(0.2 + random() * 0.7).toFixed(2),
+  fill: random() > 0.9 ? '#ffdcb4' : random() > 0.7 ? '#bfe9ff' : '#e9f2ff',
+}));
+
+const twinkles = Array.from({ length: 12 }, () => ({
+  left: +(random() * 100).toFixed(2),
+  top: +(random() * 100).toFixed(2),
+  size: +(1 + random() * 1.6).toFixed(2),
+  delay: +(random() * 8).toFixed(2),
+  duration: +(4 + random() * 6).toFixed(2),
+}));
+---
+
+<div class="starfield" aria-hidden="true">
+  <div class="nebula nebula-a"></div>
+  <div class="nebula nebula-b"></div>
+  <div class="nebula nebula-c"></div>
+  <div class="star-dust"></div>
+
+  <div class="starfield-svg">
+    <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+      {stars.map((star) => (
+        <circle cx={star.x} cy={star.y} r={star.r} fill={star.fill} opacity={star.opacity} />
+      ))}
+    </svg>
+  </div>
+
+  <div class="twinkle-layer">
+    {twinkles.map((star) => (
+      <span
+        class="twinkle-star"
+        style={`left:${star.left}%;top:${star.top}%;width:${star.size}px;height:${star.size}px;animation-delay:${star.delay}s;animation-duration:${star.duration}s`}
+      />
+    ))}
+  </div>
+
+  <span class="shooting-star shooting-star-a"></span>
+  <span class="shooting-star shooting-star-b"></span>
+</div>

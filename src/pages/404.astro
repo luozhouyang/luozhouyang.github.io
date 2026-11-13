@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+---
+
+<BaseLayout title="404 · 信号丢失" description="这段轨道不存在。">
+  <Nav />
+  <main id="main" class="relative grid min-h-screen place-items-center overflow-hidden px-6 pt-[var(--nav-height)]">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_45%,rgba(125,227,224,.08),transparent_70%)]"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(233,237,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(233,237,255,.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_72%)]"></div>
+      <div class="absolute top-1/2 left-1/2 size-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-hud/10"></div>
+      <div class="absolute top-1/2 left-1/2 size-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-hud/12"></div>
+    </div>
+
+    <div class="max-w-2xl text-center">
+      <p class="font-mono text-[0.76rem] tracking-[0.28em] text-hud/70">ERROR 404 // SIGNAL LOST</p>
+      <div class="mx-auto mt-8 grid size-24 place-items-center rounded-full border border-hud/20 bg-hud/[0.04] shadow-[0_0_70px_rgba(125,227,224,.12)]">
+        <svg viewBox="0 0 64 64" class="size-12 text-hud" fill="none" aria-hidden="true">
+          <circle cx="32" cy="32" r="19" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 6" />
+          <ellipse cx="32" cy="32" rx="27" ry="10" transform="rotate(-28 32 32)" stroke="currentColor" stroke-width="1" opacity=".5" />
+          <circle cx="32" cy="32" r="4" fill="currentColor" />
+          <path d="m43 21 12-12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".5" />
+        </svg>
+      </div>
+      <h1 class="mt-9 text-balance text-4xl font-medium tracking-[-0.05em] text-ink md:text-6xl">
+        这段轨道不存在。
+      </h1>
+      <p class="mx-auto mt-5 max-w-md text-sm leading-8 text-ink-dim">
+        可能是链接写错了，也可能是这块岩石已经漂出了可观测范围。别担心，飞船还在。
+      </p>
+      <a href="/" class="mt-8 inline-flex items-center gap-2 rounded-full bg-hud px-5 py-2.5 font-mono text-[0.78rem] font-semibold tracking-[0.08em] text-space-950 transition-transform hover:-translate-y-0.5">
+        返回轨道 <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
