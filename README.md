@@ -46,9 +46,9 @@ pnpm og             # 重新生成中文 public/og.png（需要本地服务）
 
 ## 部署
 
-仓库已包含 `.github/workflows/deploy.yml`。首次上线需要把
-**Settings → Pages → Build and deployment → Source** 从 `gh-pages` 切换为
-**GitHub Actions**。切换前，线上仍由旧的 `gh-pages` 分支提供。
+仓库通过 `.github/workflows/deploy.yml` 自动发布：推送到 `main` 后会执行
+`pnpm check`、`pnpm test`、`pnpm build`，并部署到 GitHub Pages。
+**Settings → Pages → Source** 已设置为 **GitHub Actions**。
 
 - 站点地址：<https://luozhouyang.github.io/>
 - 站点是用户主页仓库，因此 `astro.config.mjs` 中 `base` 保持 `/`。
