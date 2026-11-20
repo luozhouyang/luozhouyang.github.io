@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import LegalLayout from '../../layouts/LegalLayout.astro';
 
 export async function getStaticPaths() {
-  const docs = await getCollection('legal');
+  const docs = await getCollection('orderkeeper');
 
   return docs.map((doc) => ({
     params: { slug: doc.id },

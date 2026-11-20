@@ -13,8 +13,8 @@ const blog = defineCollection({
   }),
 });
 
-const legal = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/legal' }),
+const orderkeeper = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/orderkeeper' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -22,4 +22,4 @@ const legal = defineCollection({
   }),
 });
 
-export const collections = { blog, legal };
+export const collections = { blog, orderkeeper };
