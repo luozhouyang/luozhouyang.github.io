@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import Nav from '../../components/Nav.astro';
+
+const labels: Record<string, string> = {
+  privacy: 'PRIVACY POLICY',
+  terms: 'TERMS OF SERVICE',
+  support: 'SUPPORT',
+};
+
+const docs = (await getCollection('legal')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="法律与支持 · OrderKeeper（单掌柜）"
+  description="单掌柜（OrderKeeper）的隐私政策、服务条款与使用支持。"
+>
+  <Nav />
+  <main id="main" class="relative min-h-screen overflow-hidden pt-[var(--nav-height)]">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute top-0 left-1/2 h-[30rem] w-[40rem] -translate-x-1/2 -translate-y-1/3 rounded-full bg-hud/[0.055] blur-[110px]"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(233,237,255,.022)_1px,transparent_1px),linear-gradient(90deg,rgba(233,237,255,.022)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_70%)]"></div>
+    </div>
+
+    <section class="shell max-w-4xl py-14 md:py-20">
+      <p class="eyebrow">ORDERKEEPER // 单掌柜</p>
+      <h1 class="mt-6 text-balance text-4xl font-medium leading-[1.08] tracking-[-0.05em] text-ink md:text-6xl">
+        法律与支持
+      </h1>
+      <p class="mt-5 max-w-2xl text-base leading-8 text-ink-dim">
+        单掌柜是一款纯本地记账与对账 App。以下页面说明我们如何处理你的数据、订阅条款以及获取支持的方式。
+      </p>
+
+      <div class="mt-12 grid gap-4">
+        {docs.map((doc) => (
+          <a
+            href={`/orderkeeper/${doc.id}/`}
+            class="group flex items-start justify-between gap-6 rounded-2xl border border-white/8 p-6 transition-colors hover:border-hud/25 hover:bg-white/[0.02] md:p-7"
+          >
+            <span>
+              <span class="font-mono text-[0.68rem] tracking-[0.14em] text-ink-faint">
+                {labels[doc.id] ?? doc.id.toUpperCase()}
+              </span>
+              <span class="mt-2 block text-xl font-medium text-ink transition-colors group-hover:text-hud md:text-2xl">
+                {doc.data.title}
+              </span>
+              <span class="mt-2 block text-sm leading-7 text-ink-dim">{doc.data.description}</span>
+            </span>
+            <span class="mt-1 font-mono text-sm text-ink-faint transition-transform group-hover:translate-x-0.5 group-hover:text-hud" aria-hidden="true">
+              →
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
